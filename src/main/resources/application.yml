@@ -1,0 +1,21 @@
+server:
+  servlet:
+    context-path: /rest/v1
+spring:
+  application:
+    name: cryptocurrency
+  main:
+    banner-mode: console
+
+  datasource:
+    data-username: root
+    data-password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1:3306/jogendra
+    hikari:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/jogendra
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root
+
