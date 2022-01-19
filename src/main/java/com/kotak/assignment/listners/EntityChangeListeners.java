@@ -7,6 +7,7 @@ import com.kotak.assignment.enums.Action;
 import com.kotak.assignment.repositories.CryptoHistoryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.PostPersist;
@@ -17,8 +18,12 @@ import javax.persistence.PostUpdate;
 @Slf4j
 public class EntityChangeListeners {
 
+    static private CryptoHistoryRepository cryptoHistoryRepository;
+
     @Autowired
-    private CryptoHistoryRepository cryptoHistoryRepository;
+    public void init(CryptoHistoryRepository cryptoHistoryRepository){
+        EntityChangeListeners.cryptoHistoryRepository = cryptoHistoryRepository;
+    }
 
     @PostUpdate
     private void afterAnyUpdate(CryptoCurrency cryptoCurrency){

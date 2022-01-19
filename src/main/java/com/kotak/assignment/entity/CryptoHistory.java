@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "crypto_history")
-//@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class)
 public class CryptoHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

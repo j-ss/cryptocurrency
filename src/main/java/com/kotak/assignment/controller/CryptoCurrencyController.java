@@ -3,6 +3,7 @@ package com.kotak.assignment.controller;
 
 import com.kotak.assignment.annotation.ListingResponse;
 import com.kotak.assignment.controller.model.request.Currency;
+import com.kotak.assignment.repositories.CryptoHistoryRepository;
 import com.kotak.assignment.service.CryptoCurrencyService;
 import com.kotak.assignment.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
-@RequestMapping(name = "/crypto/currencies")
+@RequestMapping(value = "/crypto/currencies")
 public class CryptoCurrencyController {
 
     @Autowired
