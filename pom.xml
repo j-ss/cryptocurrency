@@ -95,31 +95,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-<!--				<configuration>-->
-<!--					<addResources>true</addResources>-->
-<!--				</configuration>-->
-
 			</plugin>
-<!--			<plugin>-->
-<!--				<artifactId>maven-clean-plugin</artifactId>-->
-<!--				<version>3.1.0</version>-->
-<!--			</plugin>-->
-<!--			<plugin>-->
-<!--				<artifactId>maven-compiler-plugin</artifactId>-->
-<!--				<version>3.1.0</version>-->
-<!--			</plugin>-->
-<!--			<plugin>-->
-<!--				<artifactId>maven-surefire-plugin</artifactId>-->
-<!--				<version>3.1.0</version>-->
-<!--			</plugin>-->
-<!--			<plugin>-->
-<!--				<artifactId>maven-install-plugin</artifactId>-->
-<!--				<version>3.1.0</version>-->
-<!--			</plugin>-->
-<!--			<plugin>-->
-<!--				<artifactId>maven-deploy-plugin</artifactId>-->
-<!--				<version>3.1.0</version>-->
-<!--			</plugin>-->
 		</plugins>
 	</build>
 

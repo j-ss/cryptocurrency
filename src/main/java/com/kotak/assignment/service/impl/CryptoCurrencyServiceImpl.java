@@ -6,6 +6,7 @@ import com.kotak.assignment.enums.CryptoType;
 import com.kotak.assignment.exception.EntityNotFoundException;
 import com.kotak.assignment.repositories.CryptoCurrencyRepository;
 import com.kotak.assignment.service.CryptoCurrencyService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
@@ -30,6 +31,7 @@ import static com.kotak.assignment.util.Utility.convertJpaToResponseCurrency;
 import static com.kotak.assignment.util.Utility.convertToJpaCryptoCurrency;
 
 @Component
+@Slf4j
 public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
 
     @Autowired
@@ -38,6 +40,7 @@ public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
     @Override
     @Transactional
     public Currency addCurrency(Currency currency) {
+        log.info("inserting....");
         CryptoCurrency cryptoCurrency = convertToJpaCryptoCurrency(currency);
         cryptoCurrency.setLowestPrice(currency.getPrice());
         cryptoCurrency.setHighestPrice(currency.getPrice());
@@ -48,6 +51,7 @@ public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
     @Override
     @Transactional
     public Currency updateCurrency(Currency currency) {
+        log.info("updating...");
         Optional<CryptoCurrency> currencyOptional = cryptoCurrencyRepository.findById(currency.getId());
         if(currencyOptional.isPresent()){
             CryptoCurrency jpaCryptoCurrency = currencyOptional.get();
@@ -73,12 +77,14 @@ public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
     @Override
     @Transactional
     public void deleteCurrency(Integer id) {
+        log.info("Deleting...");
         //allow soft delete instead of hard
         cryptoCurrencyRepository.deleteById(id);
     }
 
     @Override
     public Page<CryptoCurrency> listing(Pageable pageable, Map<String, Object> filters) {
+        log.info("listing...");
         filters.entrySet().removeIf(p-> ObjectUtils.isEmpty(p.getValue()));
         Page<CryptoCurrency> page = cryptoCurrencyRepository.findAll((Specification<CryptoCurrency>) (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();

@@ -23,7 +23,7 @@ public class CryptoCurrencyController {
     @Autowired
     private CryptoCurrencyService cryptoCurrencyService;
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<?> addCurrency(@Valid @RequestBody Currency currency){
         currency.setId(null);
         return new ResponseEntity<>(Utility.buildGenericResponse(
@@ -48,6 +48,7 @@ public class CryptoCurrencyController {
     }
 
     @ListingResponse
+    @GetMapping("")
     public Object listing(@PageableDefault(size = 20,page = 1,direction = Sort.Direction.ASC,sort = "updatedAt") Pageable pageable, Map<String,Object> filters){
             return cryptoCurrencyService.listing(pageable,filters);
     }

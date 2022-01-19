@@ -4,6 +4,7 @@ import com.kotak.assignment.controller.model.response.GenericResponse;
 import com.kotak.assignment.exception.EntityNotFoundException;
 import com.kotak.assignment.exception.GenericException;
 import com.kotak.assignment.util.Utility;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,22 +20,26 @@ import java.util.Locale;
 import static com.kotak.assignment.util.Utility.buildGenericResponse;
 
 @ControllerAdvice
+@Slf4j
 public class GenericExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<GenericResponse<Object>> handleEntityNotFoundException(EntityNotFoundException ex, WebRequest request){
+        log.error(ex.getMessage(),ex);
         String path  = ((ServletWebRequest) request).getRequest().getRequestURI();
         return new ResponseEntity<>(buildGenericResponse(null,ex.getMessage(), ExceptionUtils.getStackTrace(ex),path),HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(GenericException.class)
     public ResponseEntity<GenericResponse<Object>> handleGenericException(GenericException ex,WebRequest request ){
+        log.error(ex.getMessage(),ex);
         String path  = ((ServletWebRequest) request).getRequest().getRequestURI();
         return new ResponseEntity<>(buildGenericResponse(null,ex.getMessage(), ExceptionUtils.getStackTrace(ex),path),HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<GenericResponse<Object>> handleException(Exception ex,WebRequest request){
+        log.error(ex.getMessage(),ex);
         String path  = ((ServletWebRequest) request).getRequest().getRequestURI();
         return new ResponseEntity<>(buildGenericResponse(null,ex.getMessage(), ExceptionUtils.getStackTrace(ex),path),HttpStatus.INTERNAL_SERVER_ERROR);
     }
